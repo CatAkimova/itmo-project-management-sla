@@ -1,7 +1,7 @@
-# Практическая работа №4  
-## Передача между продуктом и техникой: релизы X и X+1
+ Практическая работа №4  
+ Передача между продуктом и техникой: релизы X и X+1
 
-## 1. Контекст релизов X и X+1
+ 1. Контекст релизов X и X+1
 
 В качестве:
 
@@ -28,16 +28,16 @@
 
 ---
 
-## 2. Схема взаимодействий между ролями
+ 2. Схема взаимодействий между ролями
 
-### 2.1. Роли
+ 2.1. Роли
 
 - **Product Owner (PO)** — отвечает за бизнес-требования и приоритеты.
 - **Team Lead (TL)** — отвечает за архитектуру, декомпозицию задач и техническое качество.
 - **QA Lead (QA)** — отвечает за стратегии тестирования и качество релиза.
 - **Support Lead (Support)** — отвечает за обработку инцидентов и обратной связи пользователей.
 
-### 2.2. Логика взаимодействия
+ 2.2. Логика взаимодействия
 
 1. **Входящие требования.**  
    Маркетинг, финансы и руководство передают свои потребности PO.
@@ -52,17 +52,24 @@
 6. **Цикл обратной связи.**  
    Support агрегирует обращения и метрики CSAT/NPS и передаёт их PO и TL для корректировок.
 
-### 2.3. Схема (Mermaid)
+ 2.3. Схема (Mermaid)
 
-```mermaid
-flowchart LR
-    MKT[Marketing / Finance / Leadership] --> PO[Product Owner]
-    PO -->|Product Requirements + SLA| TL[Team Lead]
-    TL -->|Tech Tasks| DEV[Developers (Web + Mobile)]
-    TL --> QA[QA Lead]
-    QA --> TL
-    DEV --> QA
-    DEV --> DEVOPS[DevOps / Deploy]
-    DEVOPS --> SUPPORT[Support]
-    SUPPORT --> PO
-    SUPPORT --> TL
+[Marketing / Finance / Leadership]
+                |
+                v
+        [Product Owner]
+                |
+                v
+            [Team Lead]
+           /           \
+          v             v
+ [Developers (Web+Mobile)]    [QA Lead]
+          |                     ^
+          v                     |
+        [DevOps / Deploy]       |
+                |               |
+                v               |
+             [Support] ---------+
+                |
+                +---- фидбек ---> [Product Owner]
+                +---- фидбек ---> [Team Lead]
